@@ -1,5 +1,4 @@
 
-import logo from './logo.svg';
 import './App.css';
 import {Component} from 'react';
 
@@ -8,25 +7,18 @@ class App extends Component {
     super()
 
     this.state = {
-      name: "John"
+      sultans: [
+        {name: "Ertugrul"},
+        {name: "Usman"},
+        {name: "Orhan"}      ]
     }
   }
   render()  {
     return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello {this.state.name}</p>
-      
-        <button onClick={() => {
-          this.setState(() => {
-            return {name: "Tahir"}
-          }, 
-          () => {
-            console.log(this.state)
-          })
-        }}>Click to Change</button>
-      </header>
+      {this.state.sultans.map((sultan) => {
+        return <h1>{sultan.name}</h1>
+      })}
     </div>
     )
   }
