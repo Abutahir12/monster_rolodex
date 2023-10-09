@@ -1,25 +1,26 @@
 
 import './App.css';
-import {Component} from 'react';
+import { Component } from 'react';
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super()
 
     this.state = {
-      sultans: [
-        {name: "Ertugrul"},
-        {name: "Usman"},
-        {name: "Orhan"}      ]
+      sultans: []
     }
   }
-  render()  {
+
+  componentDidMount() {
+    fetch("https://jsonplaceholder.typicode.com/users").then(response => response.json()).then(sultans => this.setState({sultans: sultans}))
+  }
+  render() {
     return (
-    <div className="App">
-      {this.state.sultans.map((sultan) => {
-        return <h1>{sultan.name}</h1>
-      })}
-    </div>
+      <div className="App">
+        {this.state.sultans.map((sultan) => {
+          return <div key={sultan.id}><h1>{sultan.name}</h1></div>
+        })}
+      </div>
     )
   }
 }
